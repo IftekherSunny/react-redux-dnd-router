@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Books from './../../components/books';
-import { save } from './../../actions/books';
+import { save, move } from './../../actions/books';
 
 /**
  * mapping redux books state to the books props
@@ -21,7 +21,7 @@ const mapStateToProps = state => {
  * @param {*} dispatch 
  */
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ save }, dispatch);
+  return bindActionCreators({ save, move }, dispatch);
 }
 
 

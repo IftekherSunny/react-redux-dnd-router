@@ -1,4 +1,4 @@
-import { SAVE } from './../actions/books';
+import { SAVE, MOVE } from './../actions/books';
 
 /**
  * initial books list
@@ -22,6 +22,12 @@ export default (state, action) => {
         ...state,
         {id: state.length + 1, name: action.payload}
       ];
+
+    // moving book name  
+    case MOVE:
+      state.splice(action.payload.to, 0, state.splice(action.payload.from, 1)[0]);
+
+      return [...state];
 
     // return unchanged state  
     default:

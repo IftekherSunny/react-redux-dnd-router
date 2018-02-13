@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { DragSource, DropTarget } from 'react-dnd';
 
 /**
@@ -56,11 +57,15 @@ function dropCollect(connect, monitor) {
  * rendering book name
  */
 class Book extends React.Component {
-  render() {
+  render() { 
     const { connectDragSource, connectDropTarget } = this.props;
 
     return connectDragSource(
-      connectDropTarget(<li key={this.props.book.id}>{this.props.book.name}</li>)
+      connectDropTarget(
+        <li key={this.props.book.id}>
+          <Link to={"/" + this.props.book.id}>{this.props.book.name}</Link>
+        </li>
+      )
     )
   }
 }

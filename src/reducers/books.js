@@ -4,8 +4,8 @@ import { SAVE, MOVE } from './../actions/books';
  * initial books list
  */
 const initialState = [
-  { id: 1, name: "Learning ReactJs" },
-  { id: 2, name: "JavaScript Good Parts"}
+  { id: 1, name: "React.js Essentials", author: "Artemij Fedosejev" },
+  { id: 2, name: "JavaScript Good Parts", author: "Douglas Crockford"}
 ]
 
 /**
@@ -20,7 +20,7 @@ export default (state, action) => {
     case SAVE:
       return [
         ...state,
-        {id: state.length + 1, name: action.payload}
+        {id: state.length + 1, name: action.payload.name, author: action.payload.author}
       ];
 
     // moving book name  

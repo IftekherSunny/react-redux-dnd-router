@@ -9,14 +9,18 @@ export default class Save extends React.Component {
    * register book state
    */
   state = {
-    book: ""
+    book: {
+      name: null,
+      author: null
+    }
   }
 
   /**
    * updating book state
    */
-  updateBook(event) {
-    this.setState({ book: event.target.value })
+  updateBook(fieldName, event) {
+    let book = Object.assign(this.state.book, { [fieldName]: event.target.value});
+    this.setState({ book })
   }
 
   /**
@@ -24,7 +28,11 @@ export default class Save extends React.Component {
    */
   save() {
     this.props.save(this.state.book);
-    this.setState({ book: ""})
+    this.setState({
+      book: {
+        name: null,
+        author: null
+      }})
   }
 
   /**
@@ -33,7 +41,9 @@ export default class Save extends React.Component {
   render() {
     return (
       <div>
-        <input type="text" value={this.state.book} onChange={this.updateBook.bind(this)} />
+        <h3>Save a new book: </h3> <br />
+        <input type="text" placeholder="Name" value={this.state.book.name} onChange={this.updateBook.bind(this, "name")} /> <br />
+        <input type="text" placeholder="Author" value={this.state.book.author} onChange={this.updateBook.bind(this, "author")} /> <br />
         <button onClick={this.save.bind(this)}>Save</button>
       </div>
     )
